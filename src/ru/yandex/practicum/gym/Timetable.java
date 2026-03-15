@@ -3,10 +3,6 @@ package ru.yandex.practicum.gym;
 import java.util.*;
 
 public class Timetable {
-
-    //    private Map<Coach, Group> coachGroupMap = new HashMap<>();
-//    private List<Map<Coach, Group>> coachGroupList = new ArrayList<>();
-//    private Map<TimeOfDay, List<Map<Coach, Group>>> timeMap = new TreeMap<>();
     private Map<DayOfWeek, Map<TimeOfDay, List<Map<Coach, Group>>>> timetable = new HashMap<>();
     private Map<Coach, Integer> coachSessions = new HashMap<>();
 

@@ -76,13 +76,28 @@ public class TimetableTest {
         TrainingSession singleTrainingSession = new TrainingSession(group, coach,
                 DayOfWeek.MONDAY, new TimeOfDay(13, 0));
 
+        Group group2 = new Group("Кунг-Фу для детей", Age.CHILD, 45);
+        Coach coach2 = new Coach("Bruce", "Lee", "Panda");
+        TrainingSession singleTrainingSession2 = new TrainingSession(group2, coach2,
+                DayOfWeek.MONDAY, new TimeOfDay(15, 0));
+
+        Group group3 = new Group("Стрельба из лука", Age.ADULT, 75);
+        Coach coach3 = new Coach("Максим", "Медведев", "Александрович");
+        TrainingSession singleTrainingSession3 = new TrainingSession(group3, coach3,
+                DayOfWeek.MONDAY, new TimeOfDay(15, 0));
+
         timetable.addNewTrainingSession(singleTrainingSession);
+        timetable.addNewTrainingSession(singleTrainingSession2);
+        timetable.addNewTrainingSession(singleTrainingSession3);
 
         //Проверить, что за понедельник в 13:00 вернулось одно занятие
         Assertions.assertEquals(1, timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY, new TimeOfDay(13, 0)).size());
 
         //Проверить, что за понедельник в 14:00 не вернулось занятий
         Assertions.assertEquals(0, timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY, new TimeOfDay(14, 0)).size());
+
+        //Проверить, что за понедельник в 13:00 вернулось два занятия
+        Assertions.assertEquals(2, timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY, new TimeOfDay(15, 0)).size());
     }
 
     @Test
@@ -120,8 +135,5 @@ public class TimetableTest {
 
         Assertions.assertEquals(new Coach("Васильев", "Николай", "Сергеевич"), timetable.getCountByCoaches().get(0).getKey());
         Assertions.assertEquals(new Coach("Тренер", "Фил", "Картер"), timetable.getCountByCoaches().get(1).getKey());
-
-
     }
-
 }
